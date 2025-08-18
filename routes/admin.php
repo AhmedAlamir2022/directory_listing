@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminAuthController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FooterInfoController;
+use App\Http\Controllers\Admin\HeroController;
+use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SocialLinkController;
@@ -44,6 +47,16 @@ Route::group([
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::put('/profile-password', [ProfileController::class, 'passwordUpdate'])->name('profile-password.update');
+
+    /** Hero Routes */
+    Route::get('/hero', [HeroController::class, 'index'])->name('hero.index');
+    Route::put('/hero', [HeroController::class, 'update'])->name('hero.update');
+
+    /** Category Routes */
+    Route::resource('/category', CategoryController::class);
+
+    /** Location Routes */
+    Route::resource('/location', LocationController::class);
 
     /** Settings Routes */
     Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');

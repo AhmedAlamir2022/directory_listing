@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Setting;
+use Flasher\Laravel\Facade\Flasher;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
@@ -21,6 +22,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        view()->composer('*', function ($view) {
+            if (session()->has('errors')) {
+                foreach (session('errors')->all() as $error) {
+                    Flasher::addError($error);
+                }
+            }
+        });
         // set dynamic timezone
         $timezone = Setting::where('key', 'site_timezone')->first();
         config()->set('app.timezone', $timezone->value);

@@ -4,7 +4,7 @@
     <!--==========================
                 BANNER PART START
         ===========================-->
-    {{-- @include('frontend.home.sections.banner-section') --}}
+    @include('frontend.home.sections.banner-section')
     <!--==========================
                 BANNER PART END
         ===========================-->
@@ -13,7 +13,7 @@
     <!--==========================
                 CATEGORY SLIDER START
         ===========================-->
-    {{-- @include('frontend.home.sections.category-slider-section') --}}
+    @include('frontend.home.sections.category-slider-section')
     <!--==========================
                 CATEGORY SLIDER END
         ===========================-->

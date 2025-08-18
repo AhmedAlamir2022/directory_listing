@@ -83,11 +83,12 @@
     <!-- Template JS File -->
     <script src="{{ asset('admin/assets/js/scripts.js') }}"></script>
     <script>
-        @if ($errors->any())
-            @foreach ($errors->all() as $error)
-                toastr.error("{{ $error }}")
-            @endforeach
-        @endif
+        // @if ($errors->any())
+        //     @foreach ($errors->all() as $error)
+        //         toastr.error("{{ $error }}")
+        //     @endforeach
+        // @endif
+        @flasher_render
 
         $.uploadPreview({
             input_field: "#image-upload", // Default: .image-upload

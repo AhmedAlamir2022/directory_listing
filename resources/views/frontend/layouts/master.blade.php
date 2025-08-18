@@ -128,11 +128,12 @@
     <script src="{{ asset('frontend/js/main.js') }}"></script>
 
     <script>
-        @if ($errors->any())
-            @foreach ($errors->all() as $error)
-                toastr.error("{{ $error }}")
-            @endforeach
-        @endif
+        // @if ($errors->any())
+        //     @foreach ($errors->all() as $error)
+        //         toastr.error("{{ $error }}")
+        //     @endforeach
+        // @endif
+        @flasher_render
     </script>
 
     <script>
