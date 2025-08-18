@@ -22,7 +22,7 @@
     <!--==========================
                 FEATURES PART START
         ===========================-->
-    {{-- @include('frontend.home.sections.features-section') --}}
+    @include('frontend.home.sections.features-section')
     <!--==========================
                 FEATURES PART END
         ===========================-->
@@ -31,7 +31,7 @@
     <!--==========================
                 COUNTER PART START
         ===========================-->
-    {{-- @include('frontend.home.sections.counter-section') --}}
+    @include('frontend.home.sections.counter-section')
     <!--==========================
                 COUNTER PART END
         ===========================-->

@@ -69,12 +69,12 @@
                 <ul class="dropdown-menu">
                     <li class="{{ setSidebarActive(['admin.hero.index']) }}"><a class="nav-link"
                             href="{{ route('admin.hero.index') }}">Hero</a></li>
-                    {{-- <li class="{{ setSidebarActive(['admin.our-features.index']) }}"><a class="nav-link"
-                                href="{{ route('admin.our-features.index') }}">Our Features</a></li> --}}
-                    {{-- <li class="{{ setSidebarActive(['admin.counter.index']) }}"><a class="nav-link"
-                                href="{{ route('admin.counter.index') }}">Counter</a></li> --}}
-                    {{-- <li class="{{ setSidebarActive(['admin.section-title.index']) }}"><a class="nav-link"
-                                href="{{ route('admin.section-title.index') }}">Section Titles</a></li> --}}
+                    <li class="{{ setSidebarActive(['admin.our-features.index']) }}"><a class="nav-link"
+                                href="{{ route('admin.our-features.index') }}">Our Features</a></li>
+                    <li class="{{ setSidebarActive(['admin.counter.index']) }}"><a class="nav-link"
+                                href="{{ route('admin.counter.index') }}">Counter</a></li>
+                    <li class="{{ setSidebarActive(['admin.section-title.index']) }}"><a class="nav-link"
+                                href="{{ route('admin.section-title.index') }}">Section Titles</a></li>
 
                 </ul>
             </li>
@@ -99,8 +99,8 @@
                                     href="{{ route('admin.category.index') }}">Categories</a></li>
                             <li class="{{ setSidebarActive(['admin.location.*']) }}"><a class="nav-link"
                                     href="{{ route('admin.location.index') }}">Lcoation</a></li>
-                            {{-- <li class="{{ setSidebarActive(['admin.amenity.*']) }}"><a class="nav-link"
-                                    href="{{ route('admin.amenity.index') }}">Amenities</a></li> --}}
+                            <li class="{{ setSidebarActive(['admin.amenity.*']) }}"><a class="nav-link"
+                                    href="{{ route('admin.amenity.index') }}">Amenities</a></li>
 
                             {{-- <li class="{{ setSidebarActive(['admin.listing.*']) }}"><a class="nav-link"
                                     href="{{ route('admin.listing.index') }}">All Listing</a></li> --}}

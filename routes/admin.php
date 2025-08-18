@@ -1,12 +1,16 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminAuthController;
+use App\Http\Controllers\Admin\AmenityController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CounterController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FooterInfoController;
 use App\Http\Controllers\Admin\HeroController;
 use App\Http\Controllers\Admin\LocationController;
+use App\Http\Controllers\Admin\OurFeatureController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\SectionTitleController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SocialLinkController;
 use Illuminate\Support\Facades\Mail;
@@ -52,11 +56,24 @@ Route::group([
     Route::get('/hero', [HeroController::class, 'index'])->name('hero.index');
     Route::put('/hero', [HeroController::class, 'update'])->name('hero.update');
 
+    /** section title routes */
+    Route::get('/section-titles', [SectionTitleController::class, 'index'])->name('section-title.index');
+    Route::post('/section-titles', [SectionTitleController::class, 'update'])->name('section-title.update');
+
     /** Category Routes */
     Route::resource('/category', CategoryController::class);
 
     /** Location Routes */
     Route::resource('/location', LocationController::class);
+
+    /** Amenity Routes */
+    Route::resource('/amenity', AmenityController::class);
+
+    /** Our Feature Routes */
+    Route::resource('our-features', OurFeatureController::class);
+
+    /** Counter Routes */
+    Route::resource('counter', CounterController::class);
 
     /** Settings Routes */
     Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
