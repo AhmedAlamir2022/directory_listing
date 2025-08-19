@@ -45,7 +45,7 @@
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="{{ route('admin.dashboard.index') }}">
                 {{ config('settings.site_name') }}
-                {{-- {{ truncate(config('settings.site_name'), 2) }} --}}
+                {{ truncate(config('settings.site_name'), 2) }}
             </a>
         </div>
         <ul class="sidebar-menu">
@@ -70,78 +70,73 @@
                     <li class="{{ setSidebarActive(['admin.hero.index']) }}"><a class="nav-link"
                             href="{{ route('admin.hero.index') }}">Hero</a></li>
                     <li class="{{ setSidebarActive(['admin.our-features.index']) }}"><a class="nav-link"
-                                href="{{ route('admin.our-features.index') }}">Our Features</a></li>
+                            href="{{ route('admin.our-features.index') }}">Our Features</a></li>
                     <li class="{{ setSidebarActive(['admin.counter.index']) }}"><a class="nav-link"
-                                href="{{ route('admin.counter.index') }}">Counter</a></li>
+                            href="{{ route('admin.counter.index') }}">Counter</a></li>
                     <li class="{{ setSidebarActive(['admin.section-title.index']) }}"><a class="nav-link"
-                                href="{{ route('admin.section-title.index') }}">Section Titles</a></li>
+                            href="{{ route('admin.section-title.index') }}">Section Titles</a></li>
 
                 </ul>
             </li>
 
 
             {{-- @canany(['listing index', 'pending listing', 'listing review', 'listing claims']) --}}
-                <li
-                    class="dropdown {{ setSidebarActive([
-                        'admin.category.*',
-                        'admin.location.*',
-                        'admin.amenity.*',
-                        'admin.listing.*',
-                        'admin.pending-listing.*',
-                        'admin.listing-reviews.*',
-                        'admin.listing-claims.*',
-                    ]) }}">
-                    <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-list"></i>
-                        <span>Listings</span></a>
-                    <ul class="dropdown-menu">
+            <li
+                class="dropdown {{ setSidebarActive([
+                    'admin.category.*',
+                    'admin.location.*',
+                    'admin.amenity.*',
+                    'admin.listing.*',
+                    'admin.pending-listing.*',
+                    'admin.listing-reviews.*',
+                    'admin.listing-claims.*',
+                ]) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-list"></i>
+                    <span>Listings</span></a>
+                <ul class="dropdown-menu">
 
-                            <li class="{{ setSidebarActive(['admin.category.*']) }}"><a class="nav-link"
-                                    href="{{ route('admin.category.index') }}">Categories</a></li>
-                            <li class="{{ setSidebarActive(['admin.location.*']) }}"><a class="nav-link"
-                                    href="{{ route('admin.location.index') }}">Lcoation</a></li>
-                            <li class="{{ setSidebarActive(['admin.amenity.*']) }}"><a class="nav-link"
-                                    href="{{ route('admin.amenity.index') }}">Amenities</a></li>
+                    <li class="{{ setSidebarActive(['admin.category.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.category.index') }}">Categories</a></li>
+                    <li class="{{ setSidebarActive(['admin.location.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.location.index') }}">Lcoation</a></li>
+                    <li class="{{ setSidebarActive(['admin.amenity.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.amenity.index') }}">Amenities</a></li>
 
-                            {{-- <li class="{{ setSidebarActive(['admin.listing.*']) }}"><a class="nav-link"
-                                    href="{{ route('admin.listing.index') }}">All Listing</a></li> --}}
-
-                        {{-- @can('pending listing')
-                            <li class="{{ setSidebarActive(['admin.pending-listing.*']) }}"><a class="nav-link"
-                                    href="{{ route('admin.pending-listing.index') }}">Pending Listings</a></li>
-                        @endcan --}}
-                        {{-- @can('listing review')
-                            <li class="{{ setSidebarActive(['admin.listing-reviews.index']) }}"><a class="nav-link"
-                                    href="{{ route('admin.listing-reviews.index') }}">Listing Reviews</a></li>
-                        @endcan --}}
-                        {{-- @can('listing claims')
-                            <li class="{{ setSidebarActive(['admin.listing-claims.index']) }}"><a class="nav-link"
-                                    href="{{ route('admin.listing-claims.index') }}">Claims</a></li>
-                        @endcan --}}
-                    </ul>
-                </li>
+                    <li class="{{ setSidebarActive(['admin.listing.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.listing.index') }}">All Listing</a></li>
 
 
-            {{-- @can('package index')
-                <li class="dropdown {{ setSidebarActive(['admin.packages.*', 'admin.payment-settings.index']) }}">
-                    <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
-                            class="fas fa-dollar-sign"></i> <span>Manage Packages</span></a>
+                    <li class="{{ setSidebarActive(['admin.pending-listing.*']) }}"><a class="nav-link"
+                            href="{{ route('admin.pending-listing.index') }}">Pending Listings</a></li>
 
-                    <ul class="dropdown-menu">
-                        <li class="{{ setSidebarActive(['admin.packages.index']) }}"><a class="nav-link"
-                                href="{{ route('admin.packages.index') }}">Packages</a></li>
-                        @can('payment settings index')
-                            <li class="{{ setSidebarActive(['admin.payment-settings.index']) }}"><a class="nav-link"
-                                    href="{{ route('admin.payment-settings.index') }}">Payment Settings</a></li>
-                        @endcan
-                    </ul>
-                </li>
-            @endcan --}}
 
-            {{-- @can('order index')
-                <li class="{{ setSidebarActive(['admin.orders.index']) }}"><a class="nav-link"
-                        href="{{ route('admin.orders.index') }}"><i class="fas fa-cart-arrow-down"></i>
-                        <span>Order</span></a></li>
-            @endcan --}}
+                    <li class="{{ setSidebarActive(['admin.listing-reviews.index']) }}"><a class="nav-link"
+                            href="{{ route('admin.listing-reviews.index') }}">Listing Reviews</a></li>
+
+
+                    <li class="{{ setSidebarActive(['admin.listing-claims.index']) }}"><a class="nav-link"
+                            href="{{ route('admin.listing-claims.index') }}">Claims</a></li>
+
+                </ul>
+            </li>
+
+
+
+            <li class="dropdown {{ setSidebarActive(['admin.packages.*', 'admin.payment-settings.index']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
+                        class="fas fa-dollar-sign"></i> <span>Manage Packages</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ setSidebarActive(['admin.packages.index']) }}"><a class="nav-link"
+                            href="{{ route('admin.packages.index') }}">Packages</a></li>
+                    <li class="{{ setSidebarActive(['admin.payment-settings.index']) }}"><a class="nav-link"
+                            href="{{ route('admin.payment-settings.index') }}">Payment Settings</a></li>
+                </ul>
+            </li>
+
+            <li class="{{ setSidebarActive(['admin.orders.index']) }}"><a class="nav-link"
+                    href="{{ route('admin.orders.index') }}"><i class="fas fa-cart-arrow-down"></i>
+                    <span>Order</span></a></li>
+
 
             {{-- @can('message index')
                 <li class="{{ setSidebarActive(['admin.messages.index']) }}"><a class="nav-link"

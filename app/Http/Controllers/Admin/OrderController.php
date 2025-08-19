@@ -1,0 +1,63 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\DataTables\OrderDataTable;
+use App\Http\Controllers\Controller;
+use App\Models\Order;
+use Flasher\Laravel\Facade\Flasher;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+
+class OrderController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(OrderDataTable $dataTable) : View | JsonResponse
+    {
+        return $dataTable->render('admin.order.index');
+    }
+
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id) : View
+    {
+        $order = Order::findOrFail($id);
+        return view('admin.order.show', compact('order'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id) : RedirectResponse
+    {
+        $order = Order::findOrFail($id);
+        $order->payment_status = $request->payment_status;
+        $order->save();
+
+        // toastr()->success('Updated Successfully!');
+        Flasher::addSuccess('Updated Successfully!');
+
+        return redirect()->back();
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        try {
+            Order::findOrFail($id)->delete();
+
+            return response(['status' => 'success', 'message' => 'Deleted successfully!']);
+        }catch(\Exception $e){
+            logger($e);
+            return response(['status' => 'error', 'message' => $e->getMessage()]);
+        }
+    }
+}

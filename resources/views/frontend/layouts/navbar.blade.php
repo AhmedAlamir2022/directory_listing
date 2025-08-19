@@ -67,7 +67,7 @@
 
                 </ul>
                 <a class="user_btn"
-                {{-- href="{{ route('user.listing.create') }}" --}}
+                href="{{ route('user.listing.create') }}"
                 > <i class="far fa-plus"></i> add
                     listing</a>
             </div>

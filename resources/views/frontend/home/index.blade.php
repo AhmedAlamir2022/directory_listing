@@ -40,7 +40,7 @@
     <!--==========================
                 Featured CATEGORY START
         ===========================-->
-    {{-- @include('frontend.home.sections.featured-category-section') --}}
+    @include('frontend.home.sections.featured-category-section')
     <!--==========================
                 Featured CATEGORY END
         ===========================-->
@@ -49,7 +49,7 @@
     <!--==========================
                 Featured LOCATION START
         ===========================-->
-    {{-- @include('frontend.home.sections.featured-location-section') --}}
+    @include('frontend.home.sections.featured-location-section')
 
     <!--==========================
                 Featured LOCATION END
@@ -59,7 +59,7 @@
     <!--==========================
                 FEATURED LISTING START
         ===========================-->
-    {{-- @include('frontend.home.sections.featured-listing-section') --}}
+    @include('frontend.home.sections.featured-listing-section')
     <!--==========================
                 FEATURED LISTING END
         ===========================-->
@@ -67,7 +67,7 @@
     <!--==========================
                 OUR PACKAGE START
         ===========================-->
-    {{-- @include('frontend.home.sections.featured-package-section') --}}
+    @include('frontend.home.sections.featured-package-section')
     <!--==========================
                 OUR PACKAGE END
         ===========================-->

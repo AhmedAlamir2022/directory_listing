@@ -21,3 +21,31 @@ if (!function_exists('truncate')) {
         return \Str::of($text)->limit($limit);
     }
 }
+
+/** get yt thumbnail*/
+if(!function_exists('getYtThumbnail')){
+    function getYtThumbnail(?string $url) : ?string
+    {
+        $pattern = '/[?&]v=([a-zA-Z0-9_-]{11})/';
+
+        if(preg_match($pattern, $url, $matches)){
+            $id = $matches[1];
+
+            return "https://img.youtube.com/vi/$id/mqdefault.jpg";
+        }
+
+        return null;
+    }
+}
+
+/** Currency position*/
+if(!function_exists('currencyPosition')){
+    function currencyPosition(int $amount) : ?string
+    {
+        if(config('settings.site_currency_position') === 'left') {
+            return config('settings.site_currency_icon').$amount;
+        }else {
+            return $amount.config('settings.site_currency_icon');
+        }
+    }
+}
