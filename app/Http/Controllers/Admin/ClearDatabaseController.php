@@ -24,9 +24,6 @@ class ClearDatabaseController extends Controller
         //seed default table and data
         Artisan::call('db:seed', ['--class' => 'UserSeeder']);
         Artisan::call('db:seed', ['--class' => 'SettingSeeder']);
-        Artisan::call('db:seed', ['--class' => 'PaymentSettingSeeder']);
-        Artisan::call('db:seed', ['--class' => 'MenuBuilderSeeder']);
-        Artisan::call('db:seed', ['--class' => 'RolePermissionSeeder']);
 
         return response(['status' => 'success', 'message' => 'Database wiped successfully!']);
     }

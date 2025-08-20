@@ -41,7 +41,7 @@
                             </div>
                             <div class="sidebar_line_select">
                                 <select class="select_2" name="category">
-                                    <option>categorys</option>
+                                    <option>Category</option>
                                     @foreach ($categories as $category)
                                         <option @selected($category->slug == request()->category) value="{{ $category->slug }}">
                                             {{ $category->name }}</option>
@@ -51,7 +51,7 @@
                             </div>
                             <div class="sidebar_line_select">
                                 <select class="select_2" name="location">
-                                    <option value="">location</option>
+                                    <option value="">Location</option>
                                     @foreach ($locations as $location)
                                         <option @selected($location->slug == request()->location) value="{{ $location->slug }}">
                                             {{ $location->name }}</option>

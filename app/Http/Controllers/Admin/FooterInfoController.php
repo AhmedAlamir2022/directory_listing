@@ -12,10 +12,10 @@ use Illuminate\Http\Request;
 
 class FooterInfoController extends Controller
 {
-    // function __construct()
-    // {
-    //     $this->middleware(['permission:footer index']);
-    // }
+    function __construct()
+    {
+        $this->middleware(['permission:footer index']);
+    }
 
     function index(): View
     {

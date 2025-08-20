@@ -16,10 +16,10 @@ class SettingController extends Controller
 {
     use FileUploadTrait;
 
-    // function __construct()
-    // {
-    //     $this->middleware(['permission:settings index']);
-    // }
+    function __construct()
+    {
+        $this->middleware(['permission:settings index']);
+    }
 
     function index(): View
     {

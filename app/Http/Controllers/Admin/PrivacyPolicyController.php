@@ -11,10 +11,10 @@ use Illuminate\Http\Request;
 
 class PrivacyPolicyController extends Controller
 {
-    // function __construct()
-    // {
-    //     $this->middleware(['permission:privacy policy index']);
-    // }
+    function __construct()
+    {
+        $this->middleware(['permission:privacy policy index']);
+    }
 
     function index(): View
     {

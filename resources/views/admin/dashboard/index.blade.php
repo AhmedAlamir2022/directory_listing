@@ -16,7 +16,7 @@
                             <h4>Total Listings</h4>
                         </div>
                         <div class="card-body">
-                            {{-- {{ $totalListingCount }} --}}
+                            {{ $totalListingCount }}
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                             <h4>Pending Listing</h4>
                         </div>
                         <div class="card-body">
-                            {{-- {{ $pendingListingCount }} --}}
+                            {{ $pendingListingCount }}
                         </div>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                             <h4>Total Orders</h4>
                         </div>
                         <div class="card-body">
-                            {{-- {{ $orderCount }} --}}
+                            {{ $orderCount }}
                         </div>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                             <h4>Total Claims</h4>
                         </div>
                         <div class="card-body">
-                            {{-- {{ $claimCount }} --}}
+                            {{ $claimCount }}
                         </div>
                     </div>
                 </div>
@@ -77,7 +77,7 @@
                             <h4>Total Listing Categories</h4>
                         </div>
                         <div class="card-body">
-                            {{-- {{ $listingCategoryCount }} --}}
+                            {{ $listingCategoryCount }}
                         </div>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                             <h4>Total Locations</h4>
                         </div>
                         <div class="card-body">
-                            {{-- {{ $locationCount }} --}}
+                            {{ $locationCount }}
                         </div>
                     </div>
                 </div>
@@ -109,7 +109,7 @@
                             <h4>Total Blogs</h4>
                         </div>
                         <div class="card-body">
-                            {{-- {{ $blogCount }} --}}
+                            {{ $blogCount }}
                         </div>
                     </div>
                 </div>
@@ -126,7 +126,7 @@
                             <h4>Total Blog Categories</h4>
                         </div>
                         <div class="card-body">
-                            {{-- {{ $blogCategoryCount }} --}}
+                            {{ $blogCategoryCount }}
                         </div>
                     </div>
                 </div>
@@ -142,7 +142,7 @@
                             <h4>Total Admins</h4>
                         </div>
                         <div class="card-body">
-                            {{-- {{ $adminCount }} --}}
+                            {{ $adminCount }}
                         </div>
                     </div>
                 </div>
@@ -158,7 +158,7 @@
                             <h4>Total Permissions</h4>
                         </div>
                         <div class="card-body">
-                            {{-- {{ $permissionCount }} --}}
+                            {{ $permissionCount }}
                         </div>
                     </div>
                 </div>
@@ -174,7 +174,7 @@
                             <h4>Total Roles</h4>
                         </div>
                         <div class="card-body">
-                            {{-- {{ $roleCount }} --}}
+                            {{ $roleCount }}
                         </div>
                     </div>
                 </div>
@@ -190,7 +190,7 @@
                             <h4>Total Testimonials</h4>
                         </div>
                         <div class="card-body">
-                            {{-- {{ $totalTestimonials }} --}}
+                            {{ $totalTestimonials }}
                         </div>
                     </div>
                 </div>

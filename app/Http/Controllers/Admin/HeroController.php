@@ -15,11 +15,11 @@ class HeroController extends Controller
 {
     use FileUploadTrait;
 
-    // function __construct()
-    // {
-    //     $this->middleware(['permission:section index'])->only(['index']);
-    //     $this->middleware(['permission:section update'])->only(['update']);
-    // }
+    function __construct()
+    {
+        $this->middleware(['permission:section index'])->only(['index']);
+        $this->middleware(['permission:section update'])->only(['update']);
+    }
 
     function index(): View
     {

@@ -14,6 +14,14 @@ use Illuminate\Http\Request;
 
 class OurFeatureController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware(['permission:section index'])->only(['index']);
+        $this->middleware(['permission:section create'])->only(['create', 'store']);
+        $this->middleware(['permission:section update'])->only(['update', 'edit']);
+        $this->middleware(['permission:section delete'])->only(['destroy']);
+    }
+    
     /**
      * Display a listing of the resource.
      */

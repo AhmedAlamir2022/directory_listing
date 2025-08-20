@@ -15,6 +15,11 @@ use Illuminate\Http\Request;
 
 class SocialLinkController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware(['permission:social link index']);
+    }
+    
     /**
      * Display a listing of the resource.
      */

@@ -11,10 +11,10 @@ use Illuminate\Http\Request;
 
 class TermsAndConditionController extends Controller
 {
-    // function __construct()
-    // {
-    //     $this->middleware(['permission:terms and condition index']);
-    // }
+    function __construct()
+    {
+        $this->middleware(['permission:terms and condition index']);
+    }
 
     function index(): View
     {

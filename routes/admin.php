@@ -28,6 +28,8 @@ use App\Http\Controllers\Admin\PendingListingController;
 use App\Http\Controllers\Admin\PrivacyPolicyController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\RolePermissionController;
+use App\Http\Controllers\Admin\RoleUserController;
 use App\Http\Controllers\Admin\SectionTitleController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SocialLinkController;
@@ -149,6 +151,12 @@ Route::group([
     Route::get('terms-and-condition', [TermsAndConditionController::class, 'index'])->name('terms-and-condition.index');
     Route::post('terms-and-condition', [TermsAndConditionController::class, 'update'])->name('terms-and-condition.update');
 
+    /** Role Route */
+    Route::resource('role', RolePermissionController::class);
+
+    /** Role Users Routes */
+    Route::resource('role-user', RoleUserController::class);
+
     /** Messages Routes */
     Route::get('messages', [ChatController::class, 'index'])->name('messages.index');
     Route::get('/get-messages', [ChatController::class, 'getMessages'])->name('get-messages');
@@ -171,7 +179,6 @@ Route::group([
     Route::get('/payment-settings', [PaymentSettingController::class, 'index'])->name('payment-settings.index');
     Route::post('/paypal-settings', [PaymentSettingController::class, 'paypalSetting'])->name('paypal-settings.update');
     Route::post('/stripe-settings', [PaymentSettingController::class, 'stripeSetting'])->name('stripe-settings.update');
-    Route::post('/razorpay-settings', [PaymentSettingController::class, 'razorpaySetting'])->name('razorpay-settings.update');
 
     /** Database Clear Route */
     Route::get('/clear-database', [ClearDatabaseController::class, 'index'])->name('clear-database.index');

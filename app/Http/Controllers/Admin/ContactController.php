@@ -12,10 +12,10 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
-    // function __construct()
-    // {
-    //     $this->middleware(['permission:contact index']);
-    // }
+    function __construct()
+    {
+        $this->middleware(['permission:contact index']);
+    }
 
     function index(): View
     {

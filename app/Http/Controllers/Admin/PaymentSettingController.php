@@ -12,6 +12,12 @@ use Illuminate\Http\Request;
 
 class PaymentSettingController extends Controller
 {
+
+    function __construct()
+    {
+        $this->middleware(['permission:payment settings index']);
+    }
+    
     function index(): View
     {
         return view('admin.payment-setting.index');
@@ -71,5 +77,5 @@ class PaymentSettingController extends Controller
         return redirect()->back();
     }
 
-    
+
 }

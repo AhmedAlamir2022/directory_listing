@@ -10,10 +10,10 @@ use Illuminate\Http\Request;
 
 class ChatController extends Controller
 {
-    // function __construct()
-    // {
-    //     $this->middleware(['permission:message index']);
-    // }
+    function __construct()
+    {
+        $this->middleware(['permission:message index']);
+    }
 
     function index(): View
     {

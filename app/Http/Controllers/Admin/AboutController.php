@@ -15,10 +15,10 @@ class AboutController extends Controller
 {
     use FileUploadTrait;
 
-    // function __construct()
-    // {
-    //     $this->middleware(['permission:about index']);
-    // }
+    function __construct()
+    {
+        $this->middleware(['permission:about index']);
+    }
 
     function index(): View
     {

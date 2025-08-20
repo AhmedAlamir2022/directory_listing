@@ -12,10 +12,10 @@ use Illuminate\Http\Response;
 
 class BlogCommentController extends Controller
 {
-    // function __construct()
-    // {
-    //     $this->middleware(['permission:blog comment']);
-    // }
+    function __construct()
+    {
+        $this->middleware(['permission:blog comment']);
+    }
 
     function index(BlogCommentDataTable $dataTable): View | JsonResponse
     {
