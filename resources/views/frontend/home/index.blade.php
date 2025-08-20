@@ -76,7 +76,7 @@
     <!--============================
                 TESTIMONIAL PART START
         ==============================-->
-    {{-- @include('frontend.home.sections.testimonial-section') --}}
+    @include('frontend.home.sections.testimonial-section')
     <!--============================
                 TESTIMONIAL PART END
         ==============================-->
@@ -85,7 +85,7 @@
     <!--==========================
                 BLOG PART START
         ===========================-->
-    {{-- @include('frontend.home.sections.blog-section') --}}
+    @include('frontend.home.sections.blog-section')
     <!--==========================
                 BLOG PART END
         ===========================-->

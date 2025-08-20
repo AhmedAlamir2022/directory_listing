@@ -36,6 +36,23 @@ Route::post('listing-review', [FrontendController::class, 'submitReview'])->name
 // Claim routes
 Route::post('submit-claim', [FrontendController::class, 'submitClaim'])->name('submit-claim');
 
+// Blog Routes
+Route::get('blog', [FrontendController::class, 'blog'])->name('blog.index');
+Route::get('blog/{slug}', [FrontendController::class, 'blogShow'])->name('blog.show');
+Route::post('blog-comment', [FrontendController::class, 'blogCommentStore'])->name('blog-comment.store');
+
+// About Route
+Route::get('about-us', [FrontendController::class, 'aboutIndex'])->name('about.index');
+
+// Contact Route
+Route::get('contact', [FrontendController::class, 'contactIndex'])->name('contact.index');
+Route::post('contact', [FrontendController::class, 'contactMessage'])->name('contact.message');
+
+// Privacy Policy Route
+Route::get('privacy-policy', [FrontendController::class, 'privacyPolicy'])->name('privacy-policy.index');
+// Terms and Condition Route
+Route::get('terms-and-condition', [FrontendController::class, 'termsAndCondition'])->name('terms-and-condition.index');
+
 Route::group(['middleware' => 'auth', 'prefix' => 'user', 'as' => 'user.'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');

@@ -1,9 +1,15 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AmenityController;
+use App\Http\Controllers\Admin\BlogCategoryController;
+use App\Http\Controllers\Admin\BlogCommentController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ClaimController;
+use App\Http\Controllers\Admin\ClearDatabaseController;
+use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\CounterController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FooterInfoController;
@@ -18,11 +24,14 @@ use App\Http\Controllers\Admin\OurFeatureController;
 use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\PaymentSettingController;
 use App\Http\Controllers\Admin\PendingListingController;
+use App\Http\Controllers\Admin\PrivacyPolicyController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\SectionTitleController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SocialLinkController;
+use App\Http\Controllers\Admin\TermsAndConditionController;
+use App\Http\Controllers\Admin\TestimonialController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -113,6 +122,32 @@ Route::group([
     /** Order Routes */
     Route::resource('orders', OrderController::class);
 
+    /** testimonials Routes */
+    Route::resource('testimonials', TestimonialController::class);
+
+    /** Blog Routes */
+    Route::resource('blog-category', BlogCategoryController::class);
+    Route::resource('blog', BlogController::class);
+    Route::get('blog-comment', [BlogCommentController::class, 'index'])->name('blog-comment.index');
+    Route::delete('blog-comment/{id}', [BlogCommentController::class, 'destroy'])->name('blog-comment.destroy');
+    Route::get('comment-status', [BlogCommentController::class, 'commentStatusUpdate'])->name('comment-status.update');
+
+    /** About Route */
+    Route::get('about-us', [AboutController::class, 'index'])->name('about-us.index');
+    Route::post('about-us', [AboutController::class, 'update'])->name('about-us.update');
+
+    /** Contact Route */
+    Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
+    Route::post('contact', [ContactController::class, 'update'])->name('contact.update');
+
+    /** Privacy Policy Route */
+    Route::get('privacy-policy', [PrivacyPolicyController::class, 'index'])->name('privacy-policy.index');
+    Route::post('privacy-policy', [PrivacyPolicyController::class, 'update'])->name('privacy-policy.update');
+
+    /** Terms and Condition Route */
+    Route::get('terms-and-condition', [TermsAndConditionController::class, 'index'])->name('terms-and-condition.index');
+    Route::post('terms-and-condition', [TermsAndConditionController::class, 'update'])->name('terms-and-condition.update');
+
     /** Settings Routes */
     Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
     Route::post('/general-settings', [SettingController::class, 'updateGeneralSetting'])->name('general-settings.update');
@@ -132,5 +167,7 @@ Route::group([
     Route::post('/stripe-settings', [PaymentSettingController::class, 'stripeSetting'])->name('stripe-settings.update');
     Route::post('/razorpay-settings', [PaymentSettingController::class, 'razorpaySetting'])->name('razorpay-settings.update');
 
-
+    /** Database Clear Route */
+    Route::get('/clear-database', [ClearDatabaseController::class, 'index'])->name('clear-database.index');
+    Route::post('/clear-database', [ClearDatabaseController::class, 'createDB'])->name('clear-database');
 });

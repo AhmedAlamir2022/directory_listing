@@ -4,9 +4,15 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Events\CreateOrder;
 use App\Http\Controllers\Controller;
+use App\Mail\ContactMail;
+use App\Models\AboutUs;
 use App\Models\Amenity;
+use App\Models\Blog;
+use App\Models\BlogCategory;
+use App\Models\BlogComment;
 use App\Models\Category;
 use App\Models\Claim;
+use App\Models\Contact;
 use App\Models\Counter;
 use App\Models\Hero;
 use App\Models\Listing;
@@ -14,12 +20,16 @@ use App\Models\ListingSchedule;
 use App\Models\Location;
 use App\Models\OurFeature;
 use App\Models\Package;
+use App\Models\PrivacyPolicy;
 use App\Models\Review;
 use App\Models\SectionTitle;
+use App\Models\TermsAndCondition;
+use App\Models\Testimonial;
 use Flasher\Laravel\Facade\Flasher;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
@@ -35,6 +45,8 @@ class FrontendController extends Controller
         $ourFeatures = OurFeature::where('status', 1)->get();
         $counter = Counter::first();
         $packages = Package::where('status', 1)->where('show_at_home', 1)->take(3)->get();
+        $testimonials = Testimonial::where('status', 1)->get();
+        $blogs = Blog::with('author')->where('status', 1)->orderBy('id', 'Desc')->take(3)->get();
 
         $featuredCategories = Category::with('listings')->withCount(['listings' => function ($query) {
             $query->where('is_approved', 1);
@@ -71,7 +83,9 @@ class FrontendController extends Controller
             'featuredCategories',
             'featuredLocations',
             'featuredListings',
-            'packages'
+            'packages',
+            'testimonials',
+            'blogs'
         ));
     }
 
@@ -130,7 +144,7 @@ class FrontendController extends Controller
             'category',
             'location',
             'gallery',
-            'amenities',
+            'amenities.amenity',
             'videoGallery',
             'schedules',
             'reviews.user', // حمّل الريفيوز مع اليوزر عشان مايحصلش N+1
@@ -252,7 +266,8 @@ class FrontendController extends Controller
     }
 
     /** Submit Claim */
-    function submitClaim(Request $request) : RedirectResponse {
+    function submitClaim(Request $request): RedirectResponse
+    {
         $request->validate([
             'name' => ['required', 'max:255'],
             'email' => ['required', 'max:255', 'email'],
@@ -271,6 +286,108 @@ class FrontendController extends Controller
         Flasher::addSuccess('Submitted Successfully!');
 
         return redirect()->back();
+    }
 
+    function blog(Request $request): View
+    {
+        $blogs = Blog::with('category', 'comments', 'author')->where('status', 1)->orderBy('id', 'Desc')
+            ->when($request->has('search') && $request->filled('search'), function ($query) use ($request) {
+                $query->where('title', 'LIKE', '%' . $request->search . '%')
+                    ->orWhere('description', 'LIKE', '%' . $request->search . '%');
+            })
+            ->when($request->has('category') && $request->filled('category'), function ($query) use ($request) {
+                $category = BlogCategory::select('id', 'slug')->where('slug', $request->category)->first();
+                $query->where('blog_category_id', $category->id);
+            })
+            ->paginate(9);
+        return view('frontend.pages.blog', compact('blogs'));
+    }
+
+    public function blogShow(string $slug): View
+    {
+        $blog = Blog::with([
+            'category',
+            'comments.user' // هنا جبنا الـ user مع التعليقات مرة واحدة
+        ])->where(['slug' => $slug, 'status' => 1])->firstOrFail();
+
+        $popularBlogs = Blog::with('category', 'comments')
+            ->select(['id', 'title', 'slug', 'created_at', 'image'])
+            ->where('id', '!=', $blog->id)
+            ->where('is_popular', 1)
+            ->orderBy('id', 'DESC')
+            ->take(5)
+            ->get();
+
+        $categories = BlogCategory::withCount(['blogs' => function ($query) {
+            $query->where('status', 1);
+        }])->where('status', 1)->get();
+
+        return view('frontend.pages.blog-show', compact('blog', 'categories', 'popularBlogs'));
+    }
+
+
+    function blogCommentStore(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'comment' => ['required', 'string', 'max:500']
+        ]);
+
+        $comment = new BlogComment();
+        $comment->user_id = auth()->user()->id;
+        $comment->blog_id = $request->blog_id;
+        $comment->comment = $request->comment;
+        $comment->save();
+
+        // toastr()->success('Comment added successfully and waiting for approve!');
+        Flasher::addWarning('Comment added successfully and waiting for approve!');
+
+        return redirect()->back();
+    }
+
+    function aboutIndex(): View
+    {
+        $sectionTitle = SectionTitle::first();
+        $about = AboutUs::first();
+        $ourFeatures = OurFeature::where('status', 1)->get();
+        $featuredCategories = Category::withCount(['listings' => function ($query) {
+            $query->where('is_approved', 1);
+        }])->where(['show_at_home' => 1, 'status' => 1])->take(6)->get();
+        $counter = Counter::first();
+        return view('frontend.pages.about', compact('about', 'ourFeatures', 'featuredCategories', 'counter', 'sectionTitle'));
+    }
+
+    function contactIndex(): View
+    {
+        $contact = Contact::first();
+        return view('frontend.pages.contact', compact('contact'));
+    }
+
+    function contactMessage(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:200'],
+            'email' => ['required', 'email', 'max:50'],
+            'subject' => ['required', 'string', 'max:200'],
+            'message' => ['required', 'max:2000']
+        ]);
+
+        Mail::to(config('settings.site_email'))->send(new ContactMail($request->name, $request->subject, $request->message));
+
+        // toastr()->success('Message Send Successfully!');
+        Flasher::addSuccess('Message Send Successfully!');
+
+        return redirect()->back();
+    }
+
+    function privacyPolicy(): View
+    {
+        $privacyPolicy = PrivacyPolicy::first();
+        return view('frontend.pages.privacy-policy', compact('privacyPolicy'));
+    }
+
+    function termsAndCondition(): View
+    {
+        $termsAndCondition = TermsAndCondition::first();
+        return view('frontend.pages.terms-and-condition', compact('termsAndCondition'));
     }
 }
