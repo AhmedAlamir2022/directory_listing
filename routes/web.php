@@ -4,6 +4,7 @@ use App\Http\Controllers\Frontend\AgentListingController;
 use App\Http\Controllers\Frontend\AgentListingImageGalleryController;
 use App\Http\Controllers\Frontend\AgentListingScheduleController;
 use App\Http\Controllers\Frontend\AgentListingVideoGalleryController;
+use App\Http\Controllers\Frontend\ChatController;
 use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\OrderController;
@@ -62,7 +63,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'user', 'as' => 'user.'], func
 
     /** Message Routes */
     Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('send-message');
-    // Route::get('/get-messages', [ChatController::class, 'getMessages'])->name('get-messages');
+    Route::get('/get-messages', [ChatController::class, 'getMessages'])->name('get-messages');
 
 
     /** Linsting Routes */

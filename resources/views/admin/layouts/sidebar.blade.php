@@ -80,7 +80,7 @@
             </li>
 
 
-            {{-- @canany(['listing index', 'pending listing', 'listing review', 'listing claims']) --}}
+
             <li
                 class="dropdown {{ setSidebarActive([
                     'admin.category.*',
@@ -138,11 +138,11 @@
                     <span>Order</span></a></li>
 
 
-            {{-- @can('message index')
+
                 <li class="{{ setSidebarActive(['admin.messages.index']) }}"><a class="nav-link"
                         href="{{ route('admin.messages.index') }}"><i class="fas fa-comment-alt"></i>
                         <span>Messages</span></a></li>
-            @endcan --}}
+            
 
 
             <li class="{{ setSidebarActive(['admin.testimonials.index']) }}"><a class="nav-link"

@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\BlogCategoryController;
 use App\Http\Controllers\Admin\BlogCommentController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ChatController;
 use App\Http\Controllers\Admin\ClaimController;
 use App\Http\Controllers\Admin\ClearDatabaseController;
 use App\Http\Controllers\Admin\ContactController;
@@ -148,10 +149,15 @@ Route::group([
     Route::get('terms-and-condition', [TermsAndConditionController::class, 'index'])->name('terms-and-condition.index');
     Route::post('terms-and-condition', [TermsAndConditionController::class, 'update'])->name('terms-and-condition.update');
 
+    /** Messages Routes */
+    Route::get('messages', [ChatController::class, 'index'])->name('messages.index');
+    Route::get('/get-messages', [ChatController::class, 'getMessages'])->name('get-messages');
+    Route::post('/send-message', [ChatController::class, 'sendMessage'])->name('send-message');
+
     /** Settings Routes */
     Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
     Route::post('/general-settings', [SettingController::class, 'updateGeneralSetting'])->name('general-settings.update');
-    // Route::post('/pusher-settings', [SettingController::class, 'updatePusherSetting'])->name('pusher-settings.update');
+    Route::post('/pusher-settings', [SettingController::class, 'updatePusherSetting'])->name('pusher-settings.update');
     Route::post('/logo-settings', [SettingController::class, 'logoSettings'])->name('logo-settings.update');
     Route::post('/appearance-settings', [SettingController::class, 'appearanceSetting'])->name('appearance-settings.update');
 

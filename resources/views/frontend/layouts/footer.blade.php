@@ -12,39 +12,36 @@
                     <p>{!! $footerInfo?->short_description !!}</p>
                     <ul class="footer_icon">
                         @foreach ($socialLinks as $link)
-                        <li><a href="{{ $link->url }}"><i class="{{ $link->icon }}"></i></a></li>
+                            <li><a href="{{ $link->url }}"><i class="{{ $link->icon }}"></i></a></li>
                         @endforeach
 
                     </ul>
                 </div>
             </div>
-            <div class="col-xl-2 col-sm-6 col-md-6 col-lg-6">
+            <div class="col-xl-3 col-sm-6 col-md-6 col-lg-6">
                 <div class="footer_text">
                     <h3>My Account</h3>
                     <ul class="footer_link">
-                        {{-- @foreach (Menu::getByName('Footer Menu One') as $footerMenuOne)
-                        <li><a href="{{ $footerMenuOne['link'] }}"><i class="far fa-chevron-double-right"></i> {{ $footerMenuOne['label'] }}</a></li>
-                        @endforeach --}}
+                        @guest
+                            <li><a href="{{ route('register') }}"><i class="far fa-chevron-double-right"></i> Register</a></li>
+                            <li><a href="{{  route('login') }}"><i class="far fa-chevron-double-right"></i> Login</a></li>
+                        @endguest
+
+                        @auth
+                            <li><a href="{{ route('user.dashboard') }}"><i class="far fa-chevron-double-right"></i> User Dashboard</a></li>
+                        @endauth
                     </ul>
                 </div>
             </div>
-            <div class="col-xl-2 col-sm-6 col-md-3 col-lg-3">
+            <div class="col-xl-3 col-sm-6 col-md-3 col-lg-3">
                 <div class="footer_text">
                     <h3>Helpful Links</h3>
                     <ul class="footer_link">
-                        {{-- @foreach (Menu::getByName('Footer Menu Two') as $footerMenuOne)
-                        <li><a href="{{ $footerMenuOne['link'] }}"><i class="far fa-chevron-double-right"></i> {{ $footerMenuOne['label'] }}</a></li>
-                        @endforeach --}}
-                    </ul>
-                </div>
-            </div>
-            <div class="col-xl-2 col-sm-6 col-md-3 col-lg-3">
-                <div class="footer_text">
-                    <h3>Information</h3>
-                    <ul class="footer_link">
-                        {{-- @foreach (Menu::getByName('Footer Menu Three') as $footerMenuOne)
-                        <li><a href="{{ $footerMenuOne['link'] }}"><i class="far fa-chevron-double-right"></i> {{ $footerMenuOne['label'] }}</a></li>
-                        @endforeach --}}
+                        <li><a href="{{ route('home') }}"><i class="far fa-chevron-double-right"></i> Home</a></li>
+                        <li><a href="{{ route('packages') }}"><i class="far fa-chevron-double-right"></i> Packages</a></li>
+                        <li><a href="{{ route('privacy-policy.index') }}"><i class="far fa-chevron-double-right"></i> Privacy Policy</a></li>
+                        <li><a href="{{ route('terms-and-condition.index') }}"><i class="far fa-chevron-double-right"></i> Terms & Conditions</a></li>
+                        <li><a href="{{ route('contact.index') }}"><i class="far fa-chevron-double-right"></i> Contact Us</a></li>
                     </ul>
                 </div>
             </div>
@@ -56,9 +53,10 @@
                             <p><i class="far fa-map-marker-alt"></i> {{ $footerInfo?->address }}</p>
                         </li>
                         <li><a href="#"><a href="mailto:{{ $footerInfo?->email }}"><i class="fal fa-envelope"></i>
-                            {{ $footerInfo?->email }}</a></li>
-                        <li><a href="#"><a href="callto:{{ $footerInfo?->phone }}"><i class="fal fa-phone-alt"></i>
-                            {{ $footerInfo?->phone }}</a></li>
+                                    {{ $footerInfo?->email }}</a></li>
+                        <li><a href="#"><a href="callto:{{ $footerInfo?->phone }}"><i
+                                        class="fal fa-phone-alt"></i>
+                                    {{ $footerInfo?->phone }}</a></li>
                     </ul>
                 </div>
             </div>

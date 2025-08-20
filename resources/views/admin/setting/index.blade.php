@@ -57,7 +57,7 @@
 
                                         @include('admin.setting.sections.logo-settings')
 
-                                        {{-- @include('admin.setting.sections.pusher-settings') --}}
+                                        @include('admin.setting.sections.pusher-settings')
 
                                         @include('admin.setting.sections.appearance-settings')
 

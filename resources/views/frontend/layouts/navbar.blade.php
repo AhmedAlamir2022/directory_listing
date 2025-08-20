@@ -45,31 +45,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav m-auto">
-                    {{-- @foreach (Menu::getByName('Main Menu') as $menu)
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ $menu['link'] }}">
-                                {{ $menu['label'] }}
-
-                                @if ($menu['child'])
-                                    <i class="far fa-chevron-down"></i>
-                                @endif
-                            </a>
-                            @if ($menu['child'])
-                                <ul class="menu_droapdown">
-                                    @foreach ($menu['child'] as $child)
-                                        <li><a href="{{ $child['link'] }}">{{ $child['label'] }}</a></li>
-                                    @endforeach
-                                </ul>
-                            @endif
-                        </li>
-                    @endforeach --}}
-
-
+                    <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('about.index') }}">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('listings') }}">Listing</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('blog.index') }}">Blogs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('contact.index') }}">Contact Us</a></li>
                 </ul>
-                <a class="user_btn"
-                href="{{ route('user.listing.create') }}"
-                > <i class="far fa-plus"></i> add
-                    listing</a>
+                <a class="user_btn" href="{{ route('user.listing.create') }}"><i class="far fa-plus"></i>Add listing</a>
             </div>
         </div>
     </nav>
